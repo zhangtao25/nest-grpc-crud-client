@@ -1,9 +1,9 @@
-container_name='platform-api'
-image_name='platform-api';
-jenkins_workspace='/root/docker/jenkins/workspace/platform-api';
+container_name='nest-grpc-crud-client'
+image_name='nest-grpc-crud-client';
+jenkins_workspace='/root/docker/jenkins/workspace/nest-grpc-crud-client';
 image_version=`date +%Y%m%d%H%M`;
 in_port='3000';
-out_port='31002';
+out_port='31012';
 
 echo '------Start deployment------'
 cd ${jenkins_workspace};
