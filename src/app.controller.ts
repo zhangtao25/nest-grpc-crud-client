@@ -6,6 +6,9 @@ export class AppController implements OnModuleInit {
 
     private activityService;
     private userService;
+    private studentService;
+    private bookService;
+    private schoolService;
 
     constructor(@Inject(ClentServe) private readonly clentServe: ClentServe) {
     }
@@ -13,6 +16,12 @@ export class AppController implements OnModuleInit {
     onModuleInit() {
         this.activityService = this.clentServe.client.getService('ActivityService');
         this.userService = this.clentServe.client.getService('UserService');
+        this.studentService = this.clentServe.client.getService('StudentService');
+        this.bookService = this.clentServe.client.getService('BookService');
+        this.schoolService = this.clentServe.client.getService('SchoolService');
+
+
+        console.log(this.clentServe.client,'this.clentServe.client')
     }
 
     // Activity
@@ -56,5 +65,20 @@ export class AppController implements OnModuleInit {
     @Post('findUser')
     findUser(@Body() body) {
         return this.userService.findUser(body);
+    }
+
+    @Post('findStudent')
+    findStudent(@Body() body) {
+        return this.studentService.findStudent(body);
+    }
+
+    @Post('findBook')
+    findBook(@Body() body) {
+        return this.bookService.findBook(body);
+    }
+
+    @Post('findSchool')
+    findSchool(@Body() body) {
+        return this.schoolService.findSchool(body);
     }
 }

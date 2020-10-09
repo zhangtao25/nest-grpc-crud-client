@@ -17,7 +17,7 @@ export const grpcClientOptions: ClientOptions = {
   options: {
     url: (process.env.NODE_ENV === 'prod'?process.env.GRPC_IP:IPAdress)+':8888', // Grpc connects ip to port
     package: 'grpcService', // The package name is the same as in .proto
-    protoPath: join(__dirname, '../../contract/grpc.proto')
+    protoPath: './contract/grpc.proto'
   },
 };
 
