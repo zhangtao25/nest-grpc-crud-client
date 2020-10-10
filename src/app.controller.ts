@@ -5,61 +5,37 @@ import { ClentServe } from './grpc/grpc.client.server';
 export class AppController implements OnModuleInit {
 
     private activityService;
+    private activityRelationService;
+    private fileService;
     private userService;
-    private studentService;
-    private bookService;
-    private schoolService;
+    private userinfoService;
 
     constructor(@Inject(ClentServe) private readonly clentServe: ClentServe) {
     }
 
     onModuleInit() {
         this.activityService = this.clentServe.client.getService('ActivityService');
+        this.activityRelationService = this.clentServe.client.getService('ActivityRelationService');
+        this.fileService = this.clentServe.client.getService('FileService');
         this.userService = this.clentServe.client.getService('UserService');
-        this.studentService = this.clentServe.client.getService('StudentService');
-        this.bookService = this.clentServe.client.getService('BookService');
-        this.schoolService = this.clentServe.client.getService('SchoolService');
-
-
-        console.log(this.clentServe.client,'this.clentServe.client')
+        this.userinfoService = this.clentServe.client.getService('UserinfoService');
     }
 
     // Activity
-    @Post('createActivity')
-    createActivity(@Body() body) {
-        return this.activityService.createActivity(body);
-    }
-
-    @Post('deleteActivity')
-    deleteActivity(@Body() body) {
-        return this.activityService.deleteActivity(body);
-    }
-
-    @Post('updateActivity')
-    updateActivity(@Body() body) {
-        return this.activityService.updateActivity(body);
-    }
 
     @Post('findActivity')
     findActivity(@Body() body) {
         return this.activityService.findActivity(body);
     }
 
-
-    // User
-    @Post('createUser')
-    createUser(@Body() body) {
-        return this.userService.createUser(body);
+    @Post('findActivityRelation')
+    findActivityRelation(@Body() body) {
+        return this.activityRelationService.findActivityRelation(body);
     }
 
-    @Post('deleteUser')
-    deleteUser(@Body() body) {
-        return this.userService.deleteUser(body);
-    }
-
-    @Post('updateUser')
-    updateUser(@Body() body) {
-        return this.userService.updateUser(body);
+    @Post('findFile')
+    findFile(@Body() body) {
+        return this.fileService.findFile(body);
     }
 
     @Post('findUser')
@@ -67,18 +43,8 @@ export class AppController implements OnModuleInit {
         return this.userService.findUser(body);
     }
 
-    @Post('findStudent')
-    findStudent(@Body() body) {
-        return this.studentService.findStudent(body);
-    }
-
-    @Post('findBook')
-    findBook(@Body() body) {
-        return this.bookService.findBook(body);
-    }
-
-    @Post('findSchool')
-    findSchool(@Body() body) {
-        return this.schoolService.findSchool(body);
+    @Post('findUserinfo')
+    findUserinfo(@Body() body) {
+        return this.userinfoService.findUserinfo(body);
     }
 }
